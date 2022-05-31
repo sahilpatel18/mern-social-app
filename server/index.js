@@ -11,12 +11,11 @@ const PART1 = process.env.FIRST;
 const PART2 = process.env.SECOND;
 
 const app = express();
-
-app.use("/posts", postRoutes);
-
-app.use(bodyParser.json({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
+app.use(bodyParser.json({ limit: "50mb", extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/posts", postRoutes);
 
 const CONNECTION_URL = `mongodb+srv://${PART1}:${PART2}@cluster0.t4bqb.mongodb.net/?retryWrites=true&w=majority`;
 
